@@ -102,8 +102,8 @@ describe('Unit testing the /api/posts route with search queries', () => {
         .get('/api/posts?tags=history,tech')
         .end((err, res) => {
               res.should.have.status(200);
-              res.body.posts.forEach((post) => {
-                // post.tags.should.have.any('history', 'tech')
+              res.body.posts.map((post) => {
+                expect(post.tags).to.include.any.members(['history', 'tech'])
               })
           done();
         });
